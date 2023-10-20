@@ -1,0 +1,21 @@
+<?php
+// Get the form data
+$username = $_POST['username'];
+$password = $_POST['password'];
+// Validate the input
+if (empty($username) || empty($password)) {
+  echo "Please enter a username and password.";
+  exit;
+}
+// Hash the password
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+// Store the hashed password in the database
+// Compare the entered password to the hashed password in the database
+if (password_verify($password, $hashedPassword)) {
+  // The user is authenticated
+  echo "Welcome, $username!";
+} else {
+  // The user is not authenticated
+  echo "Invalid username or password.";
+}
+?>
